@@ -1,7 +1,12 @@
 void main(){
+
+  double a = 8e5;
+  int t = 10;
   int i = 1;
   //this is printInteger()
   print(i);
+  print(t.ceil());
+  print(t.floor());
   functionTest();
   //out put: 1
 }

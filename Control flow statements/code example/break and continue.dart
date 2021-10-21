@@ -12,4 +12,7 @@ void main() {
     listInt[i] = i + 5;
     print(listInt[i]);
   }
+
+  //sử dụng thứ có thể lặp được như list hoặc set
+  listInt.where((element) => element < 3).forEach((element) {print(element);});
 }

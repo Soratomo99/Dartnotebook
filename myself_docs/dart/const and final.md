@@ -8,6 +8,19 @@ final là runtime constant
 
 đối với final, không cần thiết khai báo giá trị ngay khi khởi tạo vì nó có thể hiểu là sẽ có giá trị trong quá trình thực thi. Chỉ cần có giá trị trước lần sử dụng đầu tiên.
 
+### Lưu ý: giá trị của biến final không thể re-assigned (tái khởi tạo) nhưng có thể thay đổi nội dụng (modify their contents).
+
+```dart
+  final List<String> listName = ["Name A", "Name B", "Name C"];
+  listName = ["ABC"]; // lỗi
+  listName[1] = "Name b"; // chấp nhận
+```
+### Lưu ý: produces runtime error
+
+```dart
+  const List<String> listName = ["Name A", "Name B", "Name C"];
+  listName[1] = "Name b"; // chấp nhận, không báo lỗi nhưng khi thực thi runtime sẽ bị lỗi
+```
 ```dart
 void main() {
   const int i = 1;

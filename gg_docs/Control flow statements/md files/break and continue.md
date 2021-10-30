@@ -24,3 +24,23 @@ void main() {
   listInt.where((element) => element < 3).forEach((element) {print(element);});
 }
 ```
+
+```dart
+void main() {
+  for (int i = 1; i < 6; i++) {
+    if (i == 1) {
+      print(i);
+      print("day la so 1");
+    }
+    if (i == 4) {
+      continue;
+    }
+    if (i % 2 == 0) {
+      print("day la so chan");
+    }
+  }
+}
+// 1
+// day la so 1
+// day la so chan
+```

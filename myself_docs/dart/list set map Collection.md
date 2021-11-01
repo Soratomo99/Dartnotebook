@@ -100,3 +100,134 @@ khác với list và set, xử lý vòng lặp trong map không trả về eleme
     print("${entry.key} : ${entry.value}");
   }
 ```
+## Basic example 
+
+```dart
+void main() {
+  const Map Menu = {
+    'bunbo': 20,
+    'pho': 30,
+    'banhmi': 15,
+  };
+  const order = ['pho','banhmi'];
+  var total = 0;
+  for (var item in order) {
+    final int? price = Menu[item];
+    if(price != null){
+      total += price;
+    } else {
+      print("${item} is not on the menu");
+    }
+  }
+  print('total: $total');
+}
+```
+## Nested Collections
+
+```dart
+void main() {
+  // Nested collections
+  List<Map<String, String>> idols =[
+    {
+      'name': 'Nene Amano',
+      'description': 'Kawaii production vtuber first gen!'
+    },
+    {
+      'name': 'Satsuki Lemon',
+      'description': 'Vtuber of HiroshimaTV'
+    },
+  ];
+  for( Map idol in idols) {
+    print(idol);
+  }
+}
+```
+Ngoài ra có thể sử dụng if, for bên trong collection 
+
+```dart
+void main() {
+  bool isVTuber = true;
+  List<String> vtubers = ['Fubuki', 'Suisei'];
+  List<String> names = [
+    "Nene Amano",
+    "Satsuki Lemon",
+    if(isVTuber) "Sora",
+    // lỗi
+    // if(isVTuber) {
+    //   "Sora";
+    // }
+    for( String vtuber in vtubers) vtuber,
+  ];
+  //names.addAll(vtubers);
+}
+```
+
+## Spreads 
+
+when you add something into Map, example: add list into Map, add String into value of key, if you don't use "..." you will get [], because you is adding something into map, not add information of something to the map
+
+```dart
+void main() {
+  bool isVTuber = true;
+  List<String> vtubers = ['Fubuki', 'Suisei'];
+  List<String> names = [
+    "Nene Amano",
+    "Satsuki Lemon",
+    if(isVTuber) ...vtubers
+  ];
+  print(names);
+
+  String project = 'Kawaii';
+  Map<String, String> idol = {
+    'name': "Nene Amano",
+    'gender': 'female',
+    if(isVTuber) ... {
+      "isVtuber" : "true",
+      "project": project,
+    }
+  };
+  print(idol);
+}
+```
+## How to copy the collection 
+
+```dart
+void main() {
+  final List list1 = [1, 2, 3];
+  final List list2 = list1;
+  list2[0] = 0;
+  // list1: 0, 2, 3
+  // list2: 0, 2, 3
+  // not actually a way to copy, all of them use the same menory
+
+  // the true way to copy is
+  final List list3 = [
+    for(var item in list1) item,
+  ];
+  final List list4 = [
+    ...list1
+  ];
+}
+```
+```dart
+void main() {
+  final Map nene = {
+    "name" : "Nene Amano",
+    "isVtuber": true
+  };
+  final Map neneCopy = nene;
+  neneCopy["isVtuber"] = false;
+  print(nene);
+  print(neneCopy);
+  // {name: Nene Amano, isVtuber: false}
+  // {name: Nene Amano, isVtuber: false}
+  final Map theTrueNene = {...nene};
+  theTrueNene["isVtuber"] = true;
+  print(nene);
+  print(neneCopy);
+  print(theTrueNene);
+  // {name: Nene Amano, isVtuber: false}
+  // {name: Nene Amano, isVtuber: false}
+  // {name: Nene Amano, isVtuber: true}
+}
+```

@@ -436,3 +436,94 @@ class A {
   }
 }
 ```
+
+## Mixin
+
+When you have duplication function, method. Using mixin to reduce code.
+
+You can mixin class, the diference between "mixin" and "class - mixin" is class defining an object.
+
+```dart
+// mixin - don't have contructors
+class Animal{
+  void breathe() => print("can breathe");
+}
+
+mixin Swimming{
+  void swim() => print("can swim");
+}
+
+class Human extends Animal with Swimming {
+}
+class Dog extends Animal with Swimming {
+}
+// class
+class Animal{
+  void breathe() => print("can breathe");
+}
+
+class Swimming{
+  void swim() => print("can swim");
+}
+
+class Human extends Animal with Swimming {
+}
+class Dog extends Animal with Swimming {
+}
+```
+With mixin, hard to control value of variables if they are the same name.
+
+```dart
+mixin M1 {
+  int a = 0;
+}
+mixin M2 {
+  int a = 1;
+}
+class A with M1, M2 {
+  void getValue(){
+    print(a);
+  }
+}
+void main() {
+  var test = A();
+  test.getValue();
+  // 1
+}
+```
+
+## Extension
+
+Extension used to extend a class.
+
+```dart
+extension NumberParsing on String{
+  int? toIntorNull() => int.tryParse(this);
+}
+
+void main() {
+  String test = '123';
+  int? a = test.toIntorNull();
+  print(a);
+}
+```
+If you want an extension to apply to all subclasses of a specific class. 
+
+```dart
+extension IterableY on Iterable<num>{
+  num sum() => reduce((value, element) => value + element);
+}
+void main() {
+  List<int> listA = [1,2,3];
+  List<double> listB = [1,2,3];
+  int sumA = listA.sum();
+  double sumB = listB.sum(); // error
+}
+// because of IterableY return to num.
+// IterableY defind to return to int, then you can not return to double.
+
+// to fix it, write generic 
+extension IterableX<T extends num> on Iterable<T> {
+  T sum() => reduce((value, element) => value + element as T);
+}
+```

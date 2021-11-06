@@ -1,28 +1,21 @@
-class Fraction{
-  final int numerator;
-  final int denominator;
-  Fraction(this.numerator, this.denominator){
-    if(denominator == 0){
-      throw IntegerDivisionByZeroException();
-    }
-  }
-  double get value => numerator / denominator;
+Future<void> main() async {
+  Stream<int> stream2 = countStream(3);
+  int sum = await sumStream(stream2);
+  print(sum);
 }
-void testFraction(){
-  try {
-    final test = Fraction(1, 0);
-    print(test.value);
-  } on IntegerDivisionByZeroException catch (e) {
-    print(e);
-    rethrow;
-  } on Exception catch(e) {
-    print(e);
-  } finally {
-    print("test done");
+
+Future<int> sumStream(Stream<int> stream) async {
+  int sum = 0;
+  await for (var value in stream) {
+    sum += value;
   }
+  return sum;
 }
-void main(){
-  testFraction(); 
-  // IntegerDivisionByZeroException
-  // test done
+
+Stream<int> countStream(int count) async* {
+  for (var i = 0; i <= count; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    print(i);
+    yield i;
+  }
 }

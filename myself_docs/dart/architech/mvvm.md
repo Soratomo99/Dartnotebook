@@ -11,5 +11,5 @@ VIEW: It's responsible for implementing the visual parts of the application and 
 VIEW-MODEL: Interacts with Model and prepares observables for the View. ViewModel should be decoupled from the View and should not be aware of the View it's interacting with. 
 
 ## Repository
-
+### làm lại
 The repository is created to consider the redux store as the single source of truth for the app. Even in the case that the redux data is outdated the app will consider them as valid up until a fresh feed of data is retrieved from a webService. 

@@ -1,21 +1,32 @@
-Future<void> main() async {
-  Stream<int> stream2 = countStream(3);
-  int sum = await sumStream(stream2);
-  print(sum);
+import 'dart:html';
+
+void main() {
+
 }
 
-Future<int> sumStream(Stream<int> stream) async {
-  int sum = 0;
-  await for (var value in stream) {
-    sum += value;
-  }
-  return sum;
+abstract class A {
+  int get value;
 }
 
-Stream<int> countStream(int count) async* {
-  for (var i = 0; i <= count; i++) {
-    await Future.delayed(Duration(seconds: 1));
-    print(i);
-    yield i;
+class B extends A {
+  @override
+  int get value => throw UnimplementedError();
+}
+
+class C {
+  int value;
+  C(this.value){
+    
   }
+  int getValue(){
+      return value;
+    }
+}
+
+class D extends C {
+  D(int value) : super(value);
+  // @override
+  // int getValue() {
+  //   return super.getValue();
+  // }
 }

@@ -21,7 +21,7 @@ my_app
 
 ## Life circle Flutter
 
-![life_circle_flutter](/images/life_circle_flutter.png)
+![life_circle_flutter](../images/life_circle_flutter.png)
 
 &emsp; Các widget Flutter khi xây dựng phải được mở rộng từ một số lớp trong thư viện Flutter. Hai loại (class) bạn hầu như luôn luôn sử dụng là StatlessWidget và StatefulWidget. Sự khác biệt giữa hai loại này là StatefulWidget có một thể hiện trạng thái trong Widget và một số phương thức được xây dựng để bảo Flutter re-render lại nếu trạng thái đó thay đổi.
 
